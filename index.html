@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Decisiones en el Campus - Version D</title>
+</head>
+<body>
+<tw-storydata name="Decisiones en el Campus - Version D" startnode="1" creator="Twine" creator-version="2.8.1" ifid="D7E4A912-4B8C-4F1E-9A2D-8C3E5F1B0D74" zoom="1" format="Harlowe" format-version="3.3.9" options="" tags="" hidden>
+<style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+tw-story {
+  background-color: #f8f9fa;
+  color: #1a202c;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 20px;
+  line-height: 1.65;
+  padding: 2rem 1rem;
+}
+
+tw-passage {
+  max-width: 740px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+tw-sidebar {
+  display: none;
+}
+
+tw-link, .enchantment-link {
+  display: block;
+  background-color: #0056b3;
+  color: #ffffff !important;
+  padding: 14px 18px;
+  margin: 12px 0;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+tw-link:hover, .enchantment-link:hover {
+  background-color: #003d82;
+  color: #ffffff !important;
+}
+
+tw-link:focus-visible, .enchantment-link:focus-visible {
+  outline: 3px solid #e09f3e;
+  outline-offset: 3px;
+}
+
+.caja-datos {
+  background-color: #eff6ff;
+  border-left: 4px solid #2563eb;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.caja-resultado {
+  background-color: #f1f5f9;
+  border-left: 4px solid #2f6f4e;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 12px 0;
+}
+
+.etiqueta-nodo {
+  font-size: 0.78em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #475569;
+  letter-spacing: 0.04em;
+}
+</style>
+<script role="script" id="twine-user-script" type="text/twine-javascript"></script>
+
+<tw-passagedata pid="1" name="Inicio" tags="" position="450,50" size="100,100">(set: $puntos to 0)(set: $agua to "")(set: $energia to "")(set: $transporte to "")&lt;span class="etiqueta-nodo"&gt;Nodo 1 de 9 · Inicio · Sostenibilidad UNSA (Versión D)&lt;/span&gt;
+## Un día cualquiera en el campus
+
+&lt;div class="caja-datos"&gt;**¿Cómo funciona?** Vas a enfrentar **3 decisiones cotidianas** en la universidad (agua, energía y transporte). Cada opción muestra de antemano qué información tienes y cuál es su **costo real** en tiempo, esfuerzo o comodidad.&lt;/div&gt;
+
+No existen respuestas "perfectas" ni culpas: cada elección suma entre **0 y 2 puntos** según su impacto sostenible y te llevará a uno de **3 finales distintos**.
+
+[[Comenzar recorrido — 8:55 a. m. en el pabellón-&gt;Decision Agua]]</tw-passagedata>
+
+<tw-passagedata pid="2" name="Decision Agua" tags="" position="450,200" size="100,100">&lt;span class="etiqueta-nodo"&gt;Nodo 2 de 9 · Decisión 1 de 3: Agua | Puntaje actual: $puntos / 6&lt;/span&gt;
+## El caño goteando antes del examen
+
+&lt;div class="caja-datos"&gt;**Datos disponibles:** Son las 8:55 a. m. y tu práctica calificada empieza en **5 minutos**. Al pasar por los servicios del primer piso ves un caño abierto con flujo continuo. No hay nadie más en el pasillo.&lt;/div&gt;
+
+**¿Qué decides hacer?**
+
+(link: "1. Cerrar la llave de paso y avisar a mantenimiento en la puerta — Costo: pierdes 4 min de repaso")[(set: $agua to "reportar")(set: $puntos to $puntos + 2)(goto: "Consecuencia Agua")]
+
+(link: "2. Ajustar con fuerza la manija para reducir el chorro a goteo — Costo: 30 segundos y te mojas las manos")[(set: $agua to "cerrar")(set: $puntos to $puntos + 1)(goto: "Consecuencia Agua")]
+
+(link: "3. Seguir directo al salón para asegurar tu sitio y repasar — Costo hoy: 0 minutos; el agua sigue corriendo")[(set: $agua to "ignorar")(set: $puntos to $puntos + 0)(goto: "Consecuencia Agua")]</tw-passagedata>
+
+<tw-passagedata pid="3" name="Consecuencia Agua" tags="" position="450,350" size="100,100">&lt;span class="etiqueta-nodo"&gt;Nodo 3 de 9 · Consecuencia 1: Agua | Puntaje actual: $puntos / 6&lt;/span&gt;
+## Resultado de tu primera decisión
+
+(if: $agua is "reportar")[&lt;div class="caja-resultado"&gt;**Evidencia:** El chorro se detuvo en menos de 2 minutos y mantenimiento anotó el cambio de empaque.
+
+**Interpretación:** Una fuga continua desperdicia más de 30 litros por hora en un pabellón; cortar el flujo temprano evita cientos de litros perdidos en el día.
+
+**Acción realizable:** Guardar el punto de reporte rápido del pabellón permite avisar en menos de 1 minuto la próxima vez.&lt;/div&gt;](else-if: $agua is "cerrar")[&lt;div class="caja-resultado"&gt;**Evidencia:** El flujo fuerte bajó a un goteo lento y llegaste puntual a tu práctica.
+
+**Interpretación:** Redujiste gran parte del desperdicio inmediato, aunque la válvula dañada seguirá goteando hasta ser reparada.
+
+**Acción realizable:** Al salir de clase puedes dejar un aviso breve en conserjería para que cambien el empaque.&lt;/div&gt;](else:)[&lt;div class="caja-resultado"&gt;**Evidencia:** Llegaste a tiempo y repasaste tus apuntes. El caño siguió abierto durante toda la hora de clase.
+
+**Interpretación:** Priorizar un examen bajo presión de tiempo es comprensible, pero asumir que "alguien más avisará" prolonga la pérdida por horas.
+
+**Acción realizable:** Incluso un reporte de 20 segundos al terminar tu evaluación sigue siendo útil para detener la pérdida.&lt;/div&gt;]
+
+[[Continuar hacia la tarde en el campus-&gt;Decision Energia]]</tw-passagedata>
+
+<tw-passagedata pid="4" name="Decision Energia" tags="" position="450,500" size="100,100">&lt;span class="etiqueta-nodo"&gt;Nodo 4 de 9 · Decisión 2 de 3: Energía | Puntaje actual: $puntos / 6&lt;/span&gt;
+## El aula vacía al final de la jornada
+
+&lt;div class="caja-datos"&gt;**Datos disponibles:** Son las 6:40 p. m. Regresas por tu cuaderno olvidado en un salón vacío: los fluorescentes y el proyector siguen encendidos. Tu último bus directo pasa en pocos minutos.&lt;/div&gt;
+
+**¿Qué decides hacer?**
+
+(link: "1. Apagar el proyector con el control, bajar las luces y cerrar la puerta — Costo: 2 min extra; arriesgas perder el bus")[(set: $energia to "todo")(set: $puntos to $puntos + 2)(goto: "Consecuencia Energia")]
+
+(link: "2. Apagar solo las luces junto a la puerta y dejar el proyector encendido — Costo: 10 segundos al salir")[(set: $energia to "luces")(set: $puntos to $puntos + 1)(goto: "Consecuencia Energia")]
+
+(link: "3. Recoger tu cuaderno y salir rápido sin tocar los interruptores — Costo inmediato: 0 segundos")[(set: $energia to "dejar")(set: $puntos to $puntos + 0)(goto: "Consecuencia Energia")]</tw-passagedata>
+
+<tw-passagedata pid="5" name="Consecuencia Energia" tags="" position="450,650" size="100,100">&lt;span class="etiqueta-nodo"&gt;Nodo 5 de 9 · Consecuencia 2: Energía | Puntaje actual: $puntos / 6&lt;/span&gt;
+## Balance energético del aula
+
+(if: $energia is "todo")[&lt;div class="caja-resultado"&gt;**Evidencia:** El aula quedó sin consumo activo y el ventilador del proyector completó su enfriamiento seguro.
+
+**Interpretación:** Evitaste aproximadamente 450 watts/hora de gasto innecesario y protegiste la vida útil de la lámpara del equipo.
+
+**Acción realizable:** Acordar con el delegado del salón una verificación de 20 segundos al terminar la última clase multiplica este ahorro.&lt;/div&gt;](else-if: $energia is "luces")[&lt;div class="caja-resultado"&gt;**Evidencia:** Los fluorescentes se apagaron, pero el proyector siguió proyectando luz azul durante varias horas.
+
+**Interpretación:** Redujiste cerca de la mitad del gasto del salón, aunque un proyector en vacío consume unos 250 watts por hora.
+
+**Acción realizable:** Ubicar el botón de apagado rápido antes de salir convierte esta acción en un gesto automático.&lt;/div&gt;](else:)[&lt;div class="caja-resultado"&gt;**Evidencia:** El aula permaneció con luces y proyector activos hasta la ronda nocturna, consumiendo entre 300 y 450 watts/hora sin uso.
+
+**Interpretación:** Sumado entre varios salones vacíos, este consumo representa una fracción importante del gasto eléctrico del pabellón.
+
+**Acción realizable:** Bajar al menos el interruptor de luz al ser la última persona en salir toma menos de 5 segundos.&lt;/div&gt;]
+
+[[Salir del campus rumbo a casa-&gt;Decision Transporte]]</tw-passagedata>
+
+<tw-passagedata pid="6" name="Decision Transporte" tags="" position="450,800" size="100,100">&lt;span class="etiqueta-nodo"&gt;Nodo 6 de 9 · Decisión 3 de 3: Transporte | Puntaje actual: $puntos / 6&lt;/span&gt;
+## El regreso a casa en hora punta
+
+&lt;div class="caja-datos"&gt;**Datos disponibles:** Estás en la puerta de la universidad con la mochila pesada y hace frío. Dos compañeros de tu misma zona también salen hacia el paradero.&lt;/div&gt;
+
+**¿Cómo eliges volver hoy?**
+
+(link: "1. Esperar el bus o combi de transporte público — Costo: 35 min de viaje y menos comodidad; mínima emisión")[(set: $transporte to "bus")(set: $puntos to $puntos + 2)(if: $puntos &gt;= 5)[(goto: "Final A")](else-if: $puntos &gt;= 3)[(goto: "Final B")](else:)[(goto: "Final C")]]
+
+(link: "2. Proponer un taxi compartido con tus dos compañeros — Costo: esperar 5 min y dividir la tarifa entre tres")[(set: $transporte to "compartido")(set: $puntos to $puntos + 1)(if: $puntos &gt;= 5)[(goto: "Final A")](else-if: $puntos &gt;= 3)[(goto: "Final B")](else:)[(goto: "Final C")]]
+
+(link: "3. Tomar un taxi individual de inmediato — Costo: mayor gasto económico y un auto extra, pero llegas en 15 min")[(set: $transporte to "solo")(set: $puntos to $puntos + 0)(if: $puntos &gt;= 5)[(goto: "Final A")](else-if: $puntos &gt;= 3)[(goto: "Final B")](else:)[(goto: "Final C")]]</tw-passagedata>
+
+<tw-passagedata pid="7" name="Final A" tags="" position="200,980" size="100,100">&lt;span class="etiqueta-nodo"&gt;Nodo 7 de 9 · Final A | Puntaje final: $puntos / 6&lt;/span&gt;
+## Acciones que dejan huella
+
+Asumiste costos reales de tiempo y esfuerzo en casi todas las situaciones del día. Tu recorrido demuestra que la sostenibilidad en el campus no depende de gestos extraordinarios, sino de decisiones consistentes incluso cuando nadie observa.
+
+&lt;div class="caja-resultado"&gt;**Resumen de tus decisiones hoy:**
+* **Agua:** (if: $agua is "reportar")[Reportaste la fuga y cerraste la llave — +2 pts](else-if: $agua is "cerrar")[Ajustaste la manija rápidamente — +1 pt](else:)[Seguiste directo a clase — 0 pts]
+* **Energía:** (if: $energia is "todo")[Apagaste proyector y luces — +2 pts](else-if: $energia is "luces")[Apagaste solo las luces — +1 pt](else:)[Saliste sin apagar equipos — 0 pts]
+* **Transporte:** (if: $transporte is "bus")[Regresaste en bus / transporte público — +2 pts](else-if: $transporte is "compartido")[Coordinaste taxi compartido — +1 pt](else:)[Tomaste taxi individual — 0 pts]&lt;/div&gt;
+
+**Siguiente paso realizable:** Comparte un hábito sencillo, como reportar fugas o coordinar retornos compartidos, con tu grupo de estudio esta semana.
+
+[[Volver a empezar y probar otra ruta-&gt;Inicio]]</tw-passagedata>
+
+<tw-passagedata pid="8" name="Final B" tags="" position="450,980" size="100,100">&lt;span class="etiqueta-nodo"&gt;Nodo 8 de 9 · Final B | Puntaje final: $puntos / 6&lt;/span&gt;
+## Avances parciales
+
+Equilibraste tus tiempos personales con acciones concretas en algunos momentos y soluciones intermedias en otros. Este es el escenario más habitual en la vida universitaria: ya aplicas hábitos útiles, pero tienes margen claro para reducir impacto sin complicar tu rutina.
+
+&lt;div class="caja-resultado"&gt;**Resumen de tus decisiones hoy:**
+* **Agua:** (if: $agua is "reportar")[Reportaste la fuga y cerraste la llave — +2 pts](else-if: $agua is "cerrar")[Ajustaste la manija rápidamente — +1 pt](else:)[Seguiste directo a clase — 0 pts]
+* **Energía:** (if: $energia is "todo")[Apagaste proyector y luces — +2 pts](else-if: $energia is "luces")[Apagaste solo las luces — +1 pt](else:)[Saliste sin apagar equipos — 0 pts]
+* **Transporte:** (if: $transporte is "bus")[Regresaste en bus / transporte público — +2 pts](else-if: $transporte is "compartido")[Coordinaste taxi compartido — +1 pt](else:)[Tomaste taxi individual — 0 pts]&lt;/div&gt;
+
+**Siguiente paso realizable:** Identifica cuál de las tres decisiones de hoy te resultó más fácil de sostener y conviértela en tu estándar diario.
+
+[[Volver a empezar y probar otra ruta-&gt;Inicio]]</tw-passagedata>
+
+<tw-passagedata pid="9" name="Final C" tags="" position="700,980" size="100,100">&lt;span class="etiqueta-nodo"&gt;Nodo 9 de 9 · Final C | Puntaje final: $puntos / 6&lt;/span&gt;
+## Un día para retomar
+
+Hoy priorizaste la rapidez y la comodidad inmediata frente a la presión del horario. Lejos de buscar culpas, este resultado hace visible cómo la rutina automática suele desplazar pequeñas acciones que apenas toman unos segundos.
+
+&lt;div class="caja-resultado"&gt;**Resumen de tus decisiones hoy:**
+* **Agua:** (if: $agua is "reportar")[Reportaste la fuga y cerraste la llave — +2 pts](else-if: $agua is "cerrar")[Ajustaste la manija rápidamente — +1 pt](else:)[Seguiste directo a clase — 0 pts]
+* **Energía:** (if: $energia is "todo")[Apagaste proyector y luces — +2 pts](else-if: $energia is "luces")[Apagaste solo las luces — +1 pt](else:)[Saliste sin apagar equipos — 0 pts]
+* **Transporte:** (if: $transporte is "bus")[Regresaste en bus / transporte público — +2 pts](else-if: $transporte is "compartido")[Coordinaste taxi compartido — +1 pt](else:)[Tomaste taxi individual — 0 pts]&lt;/div&gt;
+
+**Siguiente paso realizable:** Mañana elige solo una acción de bajo costo, como apagar las luces al salir de un aula o avisar por una fuga, y comprueba cuánto tiempo toma realmente.
+
+[[Volver a empezar y probar otra ruta-&gt;Inicio]]</tw-passagedata>
+
+</tw-storydata>
+</body>
+</html>
