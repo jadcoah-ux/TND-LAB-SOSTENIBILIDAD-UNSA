@@ -122,7 +122,7 @@
       padding: 0.25rem 0.7rem;
       border-radius: 999px;
     }
-    .points-badge {
+    .stage-badge {
       background: var(--accent-soft);
       color: var(--accent);
       font-size: 0.82rem;
@@ -230,21 +230,23 @@
         updateStepper(1);
         return {
           badge: "Nodo 1 de 9 · Inicio",
+          stage: "Introducción",
           title: "Un día cualquiera en el campus UNSA",
-          html: `<div class="context-box"><span class="context-title">🎯 ¿Cómo funciona?</span>Vas a enfrentar <strong>3 situaciones reales</strong> en la universidad (agua, energía y transporte). Cada opción muestra de antemano qué información tienes y cuál es su <strong>costo real</strong> (tiempo, esfuerzo o comodidad).</div><p>No buscamos respuestas "perfectas" ni culpas: cada decisión suma entre <strong>0 y 2 puntos</strong> según su impacto sostenible y te llevará a uno de <strong>3 finales distintos</strong>.</p>`,
+          html: `<div class="context-box"><span class="context-title">🎯 ¿Cómo funciona?</span>Vas a enfrentar <strong>3 situaciones reales</strong> en la universidad (agua, energía y transporte). Cada opción muestra de antemano qué información tienes y cuál es su <strong>costo real</strong> en tiempo, esfuerzo o comodidad.</div><p>No existen respuestas "perfectas" ni juicios: elige con total libertad según lo que harías en tu rutina y descubre qué desenlace generan tus decisiones al final del día.</p>`,
           choices: [{ text: "Comenzar recorrido (8:55 a. m. en el pabellón)", cost: "⏱️ Duración: 2 minutos · 3 decisiones cotidianas", action: () => render("decision_agua") }]
         };
       },
       decision_agua: () => {
         updateStepper(1);
         return {
-          badge: "Nodo 2 de 9 · Decisión 1 de 3: Agua",
+          badge: "Nodo 2 de 9 · Decisión 1: Agua",
+          stage: "Etapa 1 de 3",
           title: "El caño goteando antes del examen",
           html: `<div class="context-box"><span class="context-title">📋 Datos disponibles</span>Son las <strong>8:55 a. m.</strong> y tu práctica calificada empieza en <strong>5 minutos</strong>. Al pasar por los servicios del primer piso ves un caño abierto con chorro continuo. No hay nadie más en el pasillo.</div><p><strong>¿Qué decides hacer?</strong></p>`,
           choices: [
-            { text: "1. Cerrar la llave de paso y avisar a mantenimiento en la puerta", cost: "⏱️ Costo: Pierdes 4 minutos de repaso y entras justo al límite · (+2 pts)", action: () => { state.agua = "reportar"; state.ptsAgua = 2; state.puntos += 2; render("consecuencia_agua"); } },
-            { text: "2. Ajustar con fuerza la manija para reducir el chorro a un goteo leve", cost: "⏱️ Costo: 30 segundos y te mojas las manos antes del examen · (+1 pt)", action: () => { state.agua = "cerrar"; state.ptsAgua = 1; state.puntos += 1; render("consecuencia_agua"); } },
-            { text: "3. Seguir directo al salón para asegurar tu sitio y repasar", cost: "⚡ Costo inmediato: 0 minutos para tu horario; el agua sigue corriendo · (0 pts)", action: () => { state.agua = "ignorar"; state.ptsAgua = 0; state.puntos += 0; render("consecuencia_agua"); } }
+            { text: "1. Cerrar la llave de paso y avisar a mantenimiento en la puerta", cost: "⏱️ Costo: Pierdes 4 minutos de repaso y entras justo al límite", action: () => { state.agua = "reportar"; state.ptsAgua = 2; state.puntos += 2; render("consecuencia_agua"); } },
+            { text: "2. Ajustar con fuerza la manija para reducir el chorro a un goteo leve", cost: "⏱️ Costo: 30 segundos y te mojas las manos antes del examen", action: () => { state.agua = "cerrar"; state.ptsAgua = 1; state.puntos += 1; render("consecuencia_agua"); } },
+            { text: "3. Seguir directo al salón para asegurar tu sitio y repasar", cost: "⚡ Costo inmediato: 0 minutos para tu horario; el agua sigue corriendo", action: () => { state.agua = "ignorar"; state.ptsAgua = 0; state.puntos += 0; render("consecuencia_agua"); } }
           ]
         };
       },
@@ -257,6 +259,7 @@
         }[state.agua];
         return {
           badge: "Nodo 3 de 9 · Consecuencia 1: Agua",
+          stage: "Etapa 1 de 3",
           title: "Resultado de tu primera decisión",
           html: `<div class="triad-grid"><div class="triad-item evidencia"><span class="triad-label">🔍 Evidencia</span>${data.evidencia}</div><div class="triad-item interpretacion"><span class="triad-label">📊 Interpretación</span>${data.interpretacion}</div><div class="triad-item accion"><span class="triad-label">✅ Acción realizable</span>${data.accion}</div></div>`,
           choices: [{ text: "Continuar hacia la tarde en el campus →", cost: "Siguiente etapa: Uso de energía en aulas", action: () => render("decision_energia") }]
@@ -265,13 +268,14 @@
       decision_energia: () => {
         updateStepper(2);
         return {
-          badge: "Nodo 4 de 9 · Decisión 2 de 3: Energía",
+          badge: "Nodo 4 de 9 · Decisión 2: Energía",
+          stage: "Etapa 2 de 3",
           title: "El aula vacía al final de la jornada",
           html: `<div class="context-box"><span class="context-title">📋 Datos disponibles</span>Son las <strong>6:40 p. m.</strong> Regresas por tu cuaderno olvidado en un salón vacío: los fluorescentes y el proyector siguen encendidos. Tu último bus directo pasa en pocos minutos.</div><p><strong>¿Qué decides hacer?</strong></p>`,
           choices: [
-            { text: "1. Apagar el proyector con el control, bajar las luces y cerrar la puerta", cost: "⏱️ Costo: 2 minutos extra de esfuerzo; arriesgas perder el primer bus · (+2 pts)", action: () => { state.energia = "todo"; state.ptsEnergia = 2; state.puntos += 2; render("consecuencia_energia"); } },
-            { text: "2. Apagar solo las luces junto a la puerta y dejar el proyector encendido", cost: "⏱️ Costo: 10 segundos al salir; no te desvías de tu ruta · (+1 pt)", action: () => { state.energia = "luces"; state.ptsEnergia = 1; state.puntos += 1; render("consecuencia_energia"); } },
-            { text: "3. Recoger tu cuaderno y salir rápido sin tocar los interruptores", cost: "⚡ Costo inmediato: 0 segundos; aseguras alcanzar tu bus · (0 pts)", action: () => { state.energia = "dejar"; state.ptsEnergia = 0; state.puntos += 0; render("consecuencia_energia"); } }
+            { text: "1. Apagar el proyector con el control, bajar las luces y cerrar la puerta", cost: "⏱️ Costo: 2 minutos extra de esfuerzo; arriesgas perder el primer bus", action: () => { state.energia = "todo"; state.ptsEnergia = 2; state.puntos += 2; render("consecuencia_energia"); } },
+            { text: "2. Apagar solo las luces junto a la puerta y dejar el proyector encendido", cost: "⏱️ Costo: 10 segundos al salir; no te desvías de tu ruta", action: () => { state.energia = "luces"; state.ptsEnergia = 1; state.puntos += 1; render("consecuencia_energia"); } },
+            { text: "3. Recoger tu cuaderno y salir rápido sin tocar los interruptores", cost: "⚡ Costo inmediato: 0 segundos; aseguras alcanzar tu bus", action: () => { state.energia = "dejar"; state.ptsEnergia = 0; state.puntos += 0; render("consecuencia_energia"); } }
           ]
         };
       },
@@ -284,6 +288,7 @@
         }[state.energia];
         return {
           badge: "Nodo 5 de 9 · Consecuencia 2: Energía",
+          stage: "Etapa 2 de 3",
           title: "Balance energético del aula",
           html: `<div class="triad-grid"><div class="triad-item evidencia"><span class="triad-label">🔍 Evidencia</span>${data.evidencia}</div><div class="triad-item interpretacion"><span class="triad-label">📊 Interpretación (Datos en Watts)</span>${data.interpretacion}</div><div class="triad-item accion"><span class="triad-label">✅ Acción realizable</span>${data.accion}</div></div>`,
           choices: [{ text: "Salir del campus rumbo a casa →", cost: "Última etapa: Movilidad urbana", action: () => render("decision_transporte") }]
@@ -292,41 +297,45 @@
       decision_transporte: () => {
         updateStepper(3);
         return {
-          badge: "Nodo 6 de 9 · Decisión 3 de 3: Transporte",
+          badge: "Nodo 6 de 9 · Decisión 3: Transporte",
+          stage: "Etapa 3 de 3",
           title: "El regreso a casa en hora punta",
           html: `<div class="context-box"><span class="context-title">📋 Datos disponibles</span>Estás en la puerta de la universidad con la mochila pesada y hace frío. Dos compañeros de tu misma zona también salen hacia el paradero.</div><p><strong>¿Cómo eliges volver hoy?</strong></p>`,
           choices: [
-            { text: "1. Esperar el bus o combi de transporte público", cost: "🚌 Costo: 35 min de viaje y menos comodidad; mínima emisión por pasajero · (+2 pts)", action: () => { state.transporte = "bus"; state.ptsTransporte = 2; state.puntos += 2; goToFinal(); } },
-            { text: "2. Proponer un taxi compartido con tus dos compañeros de ruta", cost: "🚕 Costo: Coordinar 5 min de espera y dividir el pasaje entre tres · (+1 pt)", action: () => { state.transporte = "compartido"; state.ptsTransporte = 1; state.puntos += 1; goToFinal(); } },
-            { text: "3. Tomar un taxi individual de inmediato", cost: "💸 Costo: Mayor gasto económico y un auto extra en hora punta, pero llegas en 15 min · (0 pts)", action: () => { state.transporte = "solo"; state.ptsTransporte = 0; state.puntos += 0; goToFinal(); } }
+            { text: "1. Esperar el bus o combi de transporte público", cost: "🚌 Costo: 35 min de viaje y menos comodidad; mínima emisión por pasajero", action: () => { state.transporte = "bus"; state.ptsTransporte = 2; state.puntos += 2; goToFinal(); } },
+            { text: "2. Proponer un taxi compartido con tus dos compañeros de ruta", cost: "🚕 Costo: Coordinar 5 min de espera y dividir el pasaje entre tres", action: () => { state.transporte = "compartido"; state.ptsTransporte = 1; state.puntos += 1; goToFinal(); } },
+            { text: "3. Tomar un taxi individual de inmediato", cost: "💸 Costo: Mayor gasto económico y un auto extra en hora punta, pero llegas en 15 min", action: () => { state.transporte = "solo"; state.ptsTransporte = 0; state.puntos += 0; goToFinal(); } }
           ]
         };
       },
       final_a: () => {
         updateStepper(4);
         return {
-          badge: "Nodo 7 de 9 · Final A (5–6 puntos)",
+          badge: "Nodo 7 de 9 · Final A",
+          stage: `Resultado: ${state.puntos} / 6 pts`,
           title: "Acciones que dejan huella",
           html: `<p>Asumiste costos reales de tiempo y esfuerzo en casi todas las situaciones del día. Tu recorrido demuestra que la sostenibilidad en el campus no depende de gestos extraordinarios, sino de decisiones consistentes incluso cuando nadie observa.</p>${buildSummary()}<div class="triad-item accion"><span class="triad-label">✅ Siguiente paso realizable</span>Comparte un hábito sencillo (como reportar fugas o coordinar retornos compartidos) con tu grupo de estudio esta semana.</div>`,
-          choices: [{ text: "🔄 Volver a empezar y probar otra ruta", cost: "Reinicia tus puntos y variables a 0", action: resetStory }]
+          choices: [{ text: "🔄 Volver a empezar y probar otra ruta", cost: "Reinicia el recorrido desde el inicio", action: resetStory }]
         };
       },
       final_b: () => {
         updateStepper(4);
         return {
-          badge: "Nodo 8 de 9 · Final B (3–4 puntos)",
+          badge: "Nodo 8 de 9 · Final B",
+          stage: `Resultado: ${state.puntos} / 6 pts`,
           title: "Avances parciales",
           html: `<p>Equilibraste tus tiempos personales con acciones concretas en algunos momentos y soluciones intermedias en otros. Este es el escenario más habitual en la vida universitaria: ya aplicas hábitos útiles, pero tienes margen claro para reducir impacto sin complicar tu rutina.</p>${buildSummary()}<div class="triad-item accion"><span class="triad-label">✅ Siguiente paso realizable</span>Identifica cuál de las tres decisiones de hoy te resultó más fácil de sostener y conviértela en tu estándar diario.</div>`,
-          choices: [{ text: "🔄 Volver a empezar y probar otra ruta", cost: "Reinicia tus puntos y variables a 0", action: resetStory }]
+          choices: [{ text: "🔄 Volver a empezar y probar otra ruta", cost: "Reinicia el recorrido desde el inicio", action: resetStory }]
         };
       },
       final_c: () => {
         updateStepper(4);
         return {
-          badge: "Nodo 9 de 9 · Final C (0–2 puntos)",
+          badge: "Nodo 9 de 9 · Final C",
+          stage: `Resultado: ${state.puntos} / 6 pts`,
           title: "Un día para retomar",
           html: `<p>Hoy priorizaste la rapidez y la comodidad inmediata frente a la presión del horario. Lejos de buscar culpas, este resultado hace visible cómo la rutina automática suele desplazar pequeñas acciones que apenas toman unos segundos.</p>${buildSummary()}<div class="triad-item accion"><span class="triad-label">✅ Siguiente paso realizable</span>Mañana elige solo una acción de bajo costo (como apagar las luces al salir de un aula o avisar por una fuga) y comprueba cuánto tiempo toma realmente.</div>`,
-          choices: [{ text: "🔄 Volver a empezar y probar otra ruta", cost: "Reinicia tus puntos y variables a 0", action: resetStory }]
+          choices: [{ text: "🔄 Volver a empezar y probar otra ruta", cost: "Reinicia el recorrido desde el inicio", action: resetStory }]
         };
       }
     };
@@ -346,7 +355,7 @@
     function render(nodeKey) {
       const container = document.getElementById("story-container");
       const data = nodes[nodeKey]();
-      container.innerHTML = `<div class="top-meta"><span class="node-badge">${data.badge}</span><span class="points-badge">Puntaje: ${state.puntos} / 6</span></div><h1>${data.title}</h1><div>${data.html}</div><div class="choices" id="choices-box"></div>`;
+      container.innerHTML = `<div class="top-meta"><span class="node-badge">${data.badge}</span><span class="stage-badge">${data.stage}</span></div><h1>${data.title}</h1><div>${data.html}</div><div class="choices" id="choices-box"></div>`;
       const choicesBox = document.getElementById("choices-box");
       data.choices.forEach((choice) => {
         const btn = document.createElement("button");
